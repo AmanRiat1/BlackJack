@@ -16,6 +16,7 @@ class Blackjack:
     player.addCard(d.getCard())
     bank.addCard(d.getCard())
 
+
   # show the hands
   bank.showMain()
   player.showMain()
@@ -50,16 +51,44 @@ class Blackjack:
     ''' (Main) -> int
     calculate the sum of all the cards' values in the hand
     '''
-
-    
     
     # to be completed
     
     # calculate the sum of all the cards' values in the hand
     
-    # while the sum > 21 and there are Ases, deduct 10 points for each As
+    # while the sum > 21 and there are Aces, deduct 10 points for each Ace
 
-    return 21 # to be changed
+    #Calling class
+    a = Blackjack
+    b = Card
+
+    #Initializing varbiables
+    total_sum = 0
+    counter = 0
+
+
+    #Adding all the values in the players hand
+    for i in range (len(main.card_list)):
+        b = main.card_list[i]
+        c = a.values[b.value]
+        if b.value == "A":
+            counter += 1
+            #print("counter",counter)
+        #print(c)
+        total_sum += c
+
+
+        #Subtract from sum if there is an ace when sum is greater than 21
+        if total_sum>21 and b.value == "A" and counter != 0:
+            total_sum -= 10
+            counter = 0
+            #print("inside if",total_sum)
+
+    #print("total:", total_sum)
+
+    return total_sum
+
+    
 
  def compare(self, bank, player):
     ''' (Main, Main) -> None
@@ -94,9 +123,6 @@ class Main(object):
         '''(Main, Card) -> None
         add a card to the hand'''
 
-        a = GameOfCards()
-        a.mix()
-        card = a.getCard()
         self.card_list.append(card)
         
     def showMain(self):
@@ -108,7 +134,7 @@ class Main(object):
     def __eq__(self, other):
         '''returns True if the hands have the same cards in the same order'''
         
-        return self.card == self.other
+        return self.card == other.card
 
     def __repr__(self):
         '''returns a representation of the object'''
@@ -149,7 +175,6 @@ class GameOfCards:
             for value in GameOfCards.values: # variables of the class
                 # add a card of value and color
                 self.packet.append(Card(value,color))
-        #print(self.packet)
 
     def getCard(self):
         '''(GameOfCards)->Card
