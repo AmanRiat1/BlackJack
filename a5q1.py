@@ -96,17 +96,36 @@ class Blackjack:
     et affiche de messages
     '''
 
-    # to be completed
+    total_player = self.total(player)
+    total_bank = self.total(bank)
 
-    # call the method self.total for the bank and for the player
+    #Comparing total values of player and bank
+    if total_bank > total_player:
+        print ("You have lost")
 
-    # if the total of the bank > the total of the player display 'You have lost.'
+    elif total_bank < total_player:
+        print ('You have won')
 
-    # ifthe total of the bank < the total of the player display 'You have won.'   
+    #If neither is bigger it compares game conditions
+    else:
 
-    # in case of equality, if the total is 21m if tha bank has a blackjack
-    # display 'You have lost.'; if the playerer has a blackjack 'You have won.' 
-    # otherwise, display 'Equality.'
+        #Tie if bank and player both have 21 and 2 cards 
+        if total_bank == 21 and len(Bank.Cards) == 2 and total_player == 21  and len(Player.Cards) ==2:
+            print ('Equality')
+
+        #Since player doesn't have 2, bank will win with 21 and 2 cards 
+        elif total_bank == 21 and len(Bank.Cards) == 2:
+            print ('You have lost')
+
+        #Means bank has >2 cards and player wins if total is 21 
+        elif player_total == 21:
+            print ('You have won')
+
+        #Regular tie 
+        else:
+            print ('Equality')
+            
+    
 
        
 class Main(object):
