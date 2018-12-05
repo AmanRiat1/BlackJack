@@ -73,8 +73,6 @@ class Blackjack:
         c = a.values[b.value]
         if b.value == "A":
             counter += 1
-            #print("counter",counter)
-        #print(c)
         total_sum += c
 
 
@@ -82,9 +80,6 @@ class Blackjack:
         if total_sum>21 and b.value == "A" and counter != 0:
             total_sum -= 10
             counter = 0
-            #print("inside if",total_sum)
-
-    #print("total:", total_sum)
 
     return total_sum
 
@@ -118,7 +113,7 @@ class Blackjack:
             print ('You have lost')
 
         #Means bank has >2 cards and player wins if total is 21 
-        elif player_total == 21:
+        elif total_player == 21:
             print ('You have won')
 
         #Regular tie 
